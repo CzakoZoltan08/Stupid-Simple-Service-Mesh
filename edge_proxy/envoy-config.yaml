@@ -31,10 +31,10 @@ static_resources:
                       routes:
                         - 
                           match: 
-                            prefix: "/dotnet"
+                            prefix: "/nestjs"
                           route:
                             prefix_rewrite: "/"
-                            cluster: "dotnet"
+                            cluster: "nestjs"
                         - 
                           match: 
                             prefix: "/nodejs"
@@ -78,7 +78,7 @@ static_resources:
             port_value: 8792
     
     -
-      name: "dotnet"
+      name: "nestjs"
       connect_timeout: "0.25s"
       type: "strict_dns"
       lb_policy: "ROUND_ROBIN"

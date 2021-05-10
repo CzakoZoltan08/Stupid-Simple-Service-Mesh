@@ -73,4 +73,4 @@ services:
   service_5:
     build: service5/
     ports:
-    - "5005:80"
+    - "5005:5005"
