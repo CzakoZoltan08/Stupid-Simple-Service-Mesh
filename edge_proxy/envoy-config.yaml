@@ -45,14 +45,14 @@ static_resources:
                           match: 
                             path: "/"
                           route:
-                            cluster: "service_1"
+                            cluster: "base"
                 http_filters:
                   - 
                     name: "envoy.router"
                     config: {}
   clusters:
     - 
-      name: "service_1"
+      name: "base"
       connect_timeout: "0.25s"
       type: "strict_dns"
       lb_policy: "ROUND_ROBIN"
