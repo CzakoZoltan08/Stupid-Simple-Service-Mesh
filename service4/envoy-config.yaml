@@ -6,7 +6,6 @@ admin:
       port_value: 9901
 static_resources:
   listeners:
-
     -
       name: "service-4-svc-http-listener"
       address:
