@@ -8,7 +8,7 @@ static_resources:
   listeners:
 
     -
-      name: "service-b-svc-http-listener"
+      name: "service-2-svc-http-listener"
       address:
         socket_address:
           address: "0.0.0.0"
@@ -22,10 +22,10 @@ static_resources:
                 stat_prefix: "ingress"
                 codec_type: "AUTO"
                 route_config:
-                  name: "service-b-svc-http-route"
+                  name: "service-2-svc-http-route"
                   virtual_hosts:
                     -
-                      name: "service-b-svc-http-route"
+                      name: "service-2-svc-http-route"
                       domains:
                         - "*"
                       routes:
@@ -33,19 +33,19 @@ static_resources:
                           match:
                             prefix: "/"
                           route:
-                            cluster: "service_b"
+                            cluster: "service_2"
                 http_filters:
                   -
                     name: "envoy.router"
     
   clusters:
       -
-        name: "service_b"
+        name: "service_2"
         connect_timeout: "0.25s"
         type: "strict_dns"
         lb_policy: "ROUND_ROBIN"
         hosts:
           -
             socket_address:
-              address: "service_b"
+              address: "service_2"
               port_value: 5002

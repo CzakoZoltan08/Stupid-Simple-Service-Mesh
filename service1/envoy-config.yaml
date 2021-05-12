@@ -8,7 +8,7 @@ static_resources:
   listeners:
 
     -
-      name: "service-a-svc-http-listener"
+      name: "service-1-svc-http-listener"
       address:
         socket_address:
           address: "0.0.0.0"
@@ -22,10 +22,10 @@ static_resources:
                 stat_prefix: "ingress"
                 codec_type: "AUTO"
                 route_config:
-                  name: "service-a-svc-http-route"
+                  name: "service-1-svc-http-route"
                   virtual_hosts:
                     -
-                      name: "service-a-svc-http-route"
+                      name: "service-1-svc-http-route"
                       domains:
                         - "*"
                       routes:
@@ -33,12 +33,12 @@ static_resources:
                           match:
                             prefix: "/"
                           route:
-                            cluster: "service_a"
+                            cluster: "service_1"
                 http_filters:
                   -
                     name: "envoy.router"
     -
-      name: "service-b-svc-http-listener"
+      name: "service-2-svc-http-listener"
       address:
         socket_address:
           address: "0.0.0.0"
@@ -52,10 +52,10 @@ static_resources:
                 stat_prefix: "egress"
                 codec_type: "AUTO"
                 route_config:
-                  name: "service-b-svc-http-route"
+                  name: "service-2-svc-http-route"
                   virtual_hosts:
                     -
-                      name: "service-b-svc-http-route"
+                      name: "service-2-svc-http-route"
                       domains:
                         - "*"
                       routes:
@@ -63,13 +63,13 @@ static_resources:
                           match:
                             prefix: "/"
                           route:
-                            cluster: "service_b"
+                            cluster: "service_2"
                 http_filters:
                   -
                     name: "envoy.router"
 
     -
-      name: "service-c-svc-http-listener"
+      name: "service-3-svc-http-listener"
       address:
         socket_address:
           address: "0.0.0.0"
@@ -83,10 +83,10 @@ static_resources:
                 stat_prefix: "egress"
                 codec_type: "AUTO"
                 route_config:
-                  name: "service-b-svc-http-route"
+                  name: "service-2-svc-http-route"
                   virtual_hosts:
                     -
-                      name: "service-b-svc-http-route"
+                      name: "service-2-svc-http-route"
                       domains:
                         - "*"
                       routes:
@@ -94,39 +94,39 @@ static_resources:
                           match:
                             prefix: "/"
                           route:
-                            cluster: "service_c"
+                            cluster: "service_3"
                 http_filters:
                   -
                     name: "envoy.router"                                
   clusters:
       -
-        name: "service_a"
+        name: "service_1"
         connect_timeout: "0.25s"
         type: "strict_dns"
         lb_policy: "ROUND_ROBIN"
         hosts:
           -
             socket_address:
-              address: "service_a"
+              address: "service_1"
               port_value: 5001  
       -
-        name: "service_b"
+        name: "service_2"
         connect_timeout: "0.25s"
         type: "strict_dns"
         lb_policy: "ROUND_ROBIN"
         hosts:
           -
             socket_address:
-              address: "service_b_envoy"
+              address: "service_2_envoy"
               port_value: 8789
 
       -
-        name: "service_c"
+        name: "service_3"
         connect_timeout: "0.25s"
         type: "strict_dns"
         lb_policy: "ROUND_ROBIN"
         hosts:
           -
             socket_address:
-              address: "service_c_envoy"
+              address: "service_3_envoy"
               port_value: 8790

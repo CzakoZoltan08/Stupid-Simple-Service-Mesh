@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
 
-    service_2_content = requests.get('http://service_a_envoy:8788/').content
+    service_2_content = requests.get('http://service_1_envoy:8788/').content
 
     return f'Hello from Service 1; Service 2 said {service_2_content}'
     

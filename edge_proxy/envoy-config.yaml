@@ -45,25 +45,25 @@ static_resources:
                           match: 
                             path: "/"
                           route:
-                            cluster: "service_a"
+                            cluster: "service_1"
                 http_filters:
                   - 
                     name: "envoy.router"
                     config: {}
   clusters:
     - 
-      name: "service_a"
+      name: "service_1"
       connect_timeout: "0.25s"
       type: "strict_dns"
       lb_policy: "ROUND_ROBIN"
       hosts:
         - 
           socket_address: 
-            address: "service_a_envoy"
+            address: "service_1_envoy"
             port_value: 8786
         - 
           socket_address: 
-            address: "service_b_envoy"
+            address: "service_2_envoy"
             port_value: 8789
     
     -
